@@ -3,16 +3,15 @@
 # Script to check wallet balance using JSON-RPC
 # Requires: curl, jq
 # Environment: GLIF_TOKEN (required) - API token for authentication
-# Usage: GLIF_TOKEN=<token> wallet-balance.sh <network> <wallet_address>
-# Example: GLIF_TOKEN=your_token wallet-balance.sh calibration 0xb649bb54c5006103c08c183f36b335ee20b7829b
+# Usage: GLIF_TOKEN=<token> wallet-balance.sh <network> <wallet_name> <wallet_address>
+# Example: GLIF_TOKEN=your_token wallet-balance.sh calibration filbeam_controller 0xb649bb54c5006103c08c183f36b335ee20b7829b
 
 set -euo pipefail
 
-# Check required environment variables
 GLIF_TOKEN="${GLIF_TOKEN:?Missing GLIF_TOKEN environment variable}"
-
 ENVIRONMENT="${1:?Missing ENVIRONMENT argument (calibration or mainnet)}"
-WALLET_ADDRESS="${2:?Missing WALLET_ADDRESS argument}"
+WALLET_NAME="${2:?Missing WALLET_NAME argument}"
+WALLET_ADDRESS="${3:?Missing WALLET_ADDRESS argument}"
 
 if [[ -n "${RPC_URL:-}" ]]; then
   RPC_URL="${RPC_URL}"
@@ -30,7 +29,7 @@ BALANCE_HEX=$(curl -sS -X POST "$RPC_URL" \
 
 BALANCE=$(printf "%d" "$BALANCE_HEX")
 
-MEASUREMENT="wallet_balance"
+MEASUREMENT="${WALLET_NAME}_balance"
 TAGS="environment=${ENVIRONMENT},address=${WALLET_ADDRESS}"
 FIELDS="balance=${BALANCE}i"
 
