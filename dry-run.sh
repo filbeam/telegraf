@@ -6,6 +6,8 @@ docker run -it --rm \
   -e CLOUDFLARE_CALIBRATION_DB_ID \
   -e CLOUDFLARE_MAINNET_DB_ID \
   -e INFLUX_TOKEN \
+  -e MAINNET_GLIF_TOKEN \
+  -e CALIBRATION_GLIF_TOKEN \
   -v $(pwd)/telegraf.conf:/etc/telegraf/telegraf.conf:ro \
   -v $(pwd)/probes:/opt/probes:ro \
   filcdn/telegraf \
