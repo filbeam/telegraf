@@ -31,6 +31,8 @@ export CLOUDFLARE_ACCOUNT_ID="375...88f"
 export CLOUDFLARE_API_KEY="secret-key"
 export CLOUDFLARE_CALIBRATION_DB_ID="8cc9...f103"
 export CLOUDFLARE_MAINNET_DB_ID="e8de...9a66"
+export MAINNET_GLIF_TOKEN="your-glif-token"
+export CALIBRATION_GLIF_TOKEN="your-glif-token"
 ```
 
 Load the environment variables at the beginning of your terminal session:
